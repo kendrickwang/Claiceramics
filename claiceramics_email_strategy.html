@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>clai.ceramics — Email Content Marketing Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --clay: #C27B55;
+    --ash: #E8DDD3;
+    --earth: #3D2B1F;
+    --sage: #8A9E85;
+    --cream: #F5EFE8;
+    --smoke: #8C7B70;
+    --white: #FDFAF7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--white);
+    color: var(--earth);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--earth);
+    color: var(--cream);
+    padding: 70px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: var(--clay);
+    opacity: 0.15;
+    top: -120px;
+    right: -80px;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: var(--sage);
+    opacity: 0.12;
+    bottom: -60px;
+    left: 200px;
+  }
+
+  .header-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 58px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--clay);
+  }
+
+  .header-sub {
+    font-size: 15px;
+    color: var(--ash);
+    max-width: 560px;
+    opacity: 0.85;
+  }
+
+  .header-meta {
+    margin-top: 40px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--smoke);
+    letter-spacing: 1px;
+  }
+
+  .meta-item span {
+    display: block;
+    font-size: 13px;
+    color: var(--ash);
+    margin-top: 3px;
+    letter-spacing: 0;
+    font-family: 'Jost', sans-serif;
+  }
+
+  /* MAIN */
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 70px 40px;
+  }
+
+  /* SECTION HEADER */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--earth);
+    margin-bottom: 24px;
+  }
+
+  section {
+    margin-bottom: 70px;
+  }
+
+  /* BRAND BRIEF */
+  .brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .brand-card {
+    background: var(--cream);
+    border-left: 3px solid var(--clay);
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .brand-card h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--smoke);
+    margin-bottom: 8px;
+  }
+
+  .brand-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--earth);
+  }
+
+  /* STRATEGY PILLARS */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .pillar {
+    background: var(--earth);
+    color: var(--cream);
+    padding: 28px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pillar::before {
+    content: attr(data-num);
+    position: absolute;
+    bottom: -10px;
+    right: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+  }
+
+  .pillar-icon {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .pillar h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: var(--ash);
+  }
+
+  .pillar p {
+    font-size: 13px;
+    line-height: 1.65;
+    opacity: 0.75;
+  }
+
+  /* EMAIL SERIES TABLE */
+  .email-series {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--ash);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .series-header {
+    display: grid;
+    grid-template-columns: 50px 1fr 140px 120px;
+    background: var(--earth);
+    color: var(--cream);
+    padding: 14px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .series-row {
+    display: grid;
+    grid-template-columns: 50px 1fr 140px 120px;
+    padding: 18px 24px;
+    gap: 16px;
+    align-items: start;
+    border-bottom: 1px solid var(--ash);
+    transition: background 0.2s;
+  }
+
+  .series-row:last-child { border-bottom: none; }
+
+  .series-row:hover { background: var(--cream); }
+
+  .row-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--clay);
+    padding-top: 2px;
+  }
+
+  .row-content h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  .row-content p {
+    font-size: 12px;
+    color: var(--smoke);
+    line-height: 1.5;
+  }
+
+  .row-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 2px;
+  }
+
+  .tag-welcome { background: #EDF4EC; color: #4A7C59; }
+  .tag-nurture { background: #EEF0F8; color: #4A5B8C; }
+  .tag-launch { background: #FDF0E8; color: #B5622A; }
+  .tag-seasonal { background: #F5EDF5; color: #8C4A8C; }
+  .tag-retention { background: #FAFAF0; color: #7C7A2A; }
+
+  .row-timing {
+    font-size: 12px;
+    color: var(--smoke);
+    padding-top: 4px;
+  }
+
+  /* CALENDAR GRID */
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .cal-month {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 18px;
+  }
+
+  .cal-month h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--clay);
+    margin-bottom: 10px;
+  }
+
+  .cal-item {
+    font-size: 12px;
+    color: var(--earth);
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+  }
+
+  .cal-item:last-child { border-bottom: none; }
+
+  .cal-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .dot-welcome { background: #4A7C59; }
+  .dot-nurture { background: #4A5B8C; }
+  .dot-launch { background: #B5622A; }
+  .dot-seasonal { background: #8C4A8C; }
+  .dot-retention { background: #7C7A2A; }
+
+  /* KPI TABLE */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .kpi-card {
+    border: 1px solid var(--ash);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .kpi-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--clay);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .kpi-label {
+    font-size: 12px;
+    color: var(--smoke);
+    line-height: 1.4;
+  }
+
+  /* SUBJECT LINE EXAMPLES */
+  .subjects {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .subject-line {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .subject-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--smoke);
+    min-width: 80px;
+  }
+
+  .subject-text {
+    font-size: 14px;
+    color: var(--earth);
+    flex: 1;
+  }
+
+  .subject-preview {
+    font-size: 12px;
+    color: var(--smoke);
+    font-style: italic;
+  }
+
+  /* TIPS BOX */
+  .tips-box {
+    background: linear-gradient(135deg, var(--earth) 0%, #5A3E30 100%);
+    color: var(--cream);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 30px;
+  }
+
+  .tips-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 24px;
+    color: var(--ash);
+  }
+
+  .tips-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .tip {
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+
+  .tip-bullet {
+    color: var(--clay);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--ash);
+    margin: 20px 0 40px;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--cream);
+    text-align: center;
+    padding: 40px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--smoke);
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 640px) {
+    .header { padding: 40px 24px; }
+    .main { padding: 40px 20px; }
+    .series-header, .series-row { grid-template-columns: 1fr; }
+    .series-header .col-tag, .series-header .col-timing,
+    .series-row .row-tag, .series-row .row-timing { display: none; }
+    .cal-grid { grid-template-columns: repeat(2, 1fr); }
+    .tips-list { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-tag">Content Marketing Strategy</div>
+  <h1>Email Marketing for<br><em>clai.ceramics</em></h1>
+  <p class="header-sub">A full-year content strategy built around Connie Lai's handcrafted, nature-inspired ceramic art — designed to build community, drive sales, and spark joy.</p>
+  <div class="header-meta">
+    <div class="meta-item">BRAND<span>clai.ceramics / claiceramics.com</span></div>
+    <div class="meta-item">LOCATION<span>Los Angeles, CA</span></div>
+    <div class="meta-item">PLATFORM<span>Flodesk (confirmed)</span></div>
+    <div class="meta-item">CADENCE<span>2–3 emails/month</span></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- BRAND BRIEF -->
+  <section>
+    <div class="section-label">01 — Brand Foundation</div>
+    <div class="section-title">Understanding clai.ceramics</div>
+    <div class="brand-grid">
+      <div class="brand-card">
+        <h4>Brand Voice</h4>
+        <p>Warm, curious, and personal. Connie's multicultural story (Hong Kong → Nigeria → LA) and love of nature give the brand authentic depth.</p>
+      </div>
+      <div class="brand-card">
+        <h4>Product Promise</h4>
+        <p>Quirky, bold, functional art pieces that "spark joy" — each one unique, hand-sculpted, shaped by the clay itself.</p>
+      </div>
+      <div class="brand-card">
+        <h4>Customer</h4>
+        <p>Thoughtful buyers who value handmade, original art over mass-produced goods. Collectors, gift-givers, and home decorators.</p>
+      </div>
+      <div class="brand-card">
+        <h4>Email Platform</h4>
+        <p>Flodesk (already connected via "Where to Find Me" signup form) — ideal for visual, beautiful email layouts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section>
+    <div class="section-label">02 — Strategy Pillars</div>
+    <div class="section-title">The 5 Content Pillars</div>
+    <div class="pillars">
+      <div class="pillar" data-num="1">
+        <div class="pillar-icon">🏺</div>
+        <h3>The Making</h3>
+        <p>Behind-the-scenes process content. Show the clay, the tools, the failures, and the magic of watching a piece come to life.</p>
+      </div>
+      <div class="pillar" data-num="2">
+        <div class="pillar-icon">🌿</div>
+        <h3>Nature & Inspiration</h3>
+        <p>The natural world that fuels Connie's work — botanical forms, textures, living creatures. Educational, visual, story-driven.</p>
+      </div>
+      <div class="pillar" data-num="3">
+        <div class="pillar-icon">✨</div>
+        <h3>New Work & Drops</h3>
+        <p>Product launches, restocks, and one-of-a-kind pieces. Create urgency and exclusivity for email subscribers first.</p>
+      </div>
+      <div class="pillar" data-num="4">
+        <div class="pillar-icon">🗺️</div>
+        <h3>Connie's World</h3>
+        <p>Her story, her roots across three continents, her garden, her LA life. Humanize the maker — people buy from people.</p>
+      </div>
+      <div class="pillar" data-num="5">
+        <div class="pillar-icon">🎁</div>
+        <h3>Community & Occasions</h3>
+        <p>Seasonal moments, gifting guides, markets and pop-ups, subscriber milestones. Celebrate the community around the work.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL SERIES -->
+  <section>
+    <div class="section-label">03 — Email Sequences</div>
+    <div class="section-title">Core Email Series</div>
+    <div class="email-series">
+      <div class="series-header">
+        <div>#</div>
+        <div>Series / Email</div>
+        <div class="col-tag">Type</div>
+        <div class="col-timing">Timing</div>
+      </div>
+
+      <!-- WELCOME -->
+      <div class="series-row">
+        <div class="row-num">01</div>
+        <div class="row-content">
+          <h4>Welcome: "Hello from My Studio"</h4>
+          <p>Connie's story — Hong Kong, Nigeria, LA, ceramics. What to expect as a subscriber. A personal welcome gift (10% off or free shipping).</p>
+        </div>
+        <div><span class="row-tag tag-welcome">Welcome</span></div>
+        <div class="row-timing">Immediately on sign-up</div>
+      </div>
+      <div class="series-row">
+        <div class="row-num">02</div>
+        <div class="row-content">
+          <h4>Welcome: "How Clay Works (and Doesn't)"</h4>
+          <p>An honest, charming look at the ceramics process — what makes each piece unique, why imperfection is the point, what "functional art" means.</p>
+        </div>
+        <div><span class="row-tag tag-welcome">Welcome</span></div>
+        <div class="row-timing">Day 3</div>
+      </div>
+      <div class="series-row">
+        <div class="row-num">03</div>
+        <div class="row-content">
+          <h4>Welcome: "My Favorite Pieces (So Far)"</h4>
+          <p>Connie curates her personal top picks from the shop with the story behind each. Closes with a soft CTA to browse the collection.</p>
+        </div>
+        <div><span class="row-tag tag-welcome">Welcome</span></div>
+        <div class="row-timing">Day 7</div>
+      </div>
+
+      <!-- NURTURE -->
+      <div class="series-row">
+        <div class="row-num">04</div>
+        <div class="row-content">
+          <h4>Studio Dispatch: Monthly Newsletter</h4>
+          <p>A casual studio update — what Connie is making, what's inspiring her, a peek at works-in-progress. No hard sell. Builds intimacy.</p>
+        </div>
+        <div><span class="row-tag tag-nurture">Nurture</span></div>
+        <div class="row-timing">Monthly (1st week)</div>
+      </div>
+      <div class="series-row">
+        <div class="row-num">05</div>
+        <div class="row-content">
+          <h4>"From Nature to Clay" Deep Dive</h4>
+          <p>Pick one natural form (e.g. sea anemone, moss, fungi) — show reference photos, Connie's sketches, the finished piece. Educational + beautiful.</p>
+        </div>
+        <div><span class="row-tag tag-nurture">Nurture</span></div>
+        <div class="row-timing">Bi-monthly</div>
+      </div>
+
+      <!-- LAUNCH -->
+      <div class="series-row">
+        <div class="row-num">06</div>
+        <div class="row-content">
+          <h4>Early Access Drop Announcement</h4>
+          <p>New collection or batch preview — subscribers get to shop 24–48 hours before it goes public. Creates loyalty and urgency.</p>
+        </div>
+        <div><span class="row-tag tag-launch">Launch</span></div>
+        <div class="row-timing">Day before public drop</div>
+      </div>
+      <div class="series-row">
+        <div class="row-num">07</div>
+        <div class="row-content">
+          <h4>Last Chance: Only X Left</h4>
+          <p>A short, punchy follow-up 48 hours after a drop if inventory is low. No discount — just scarcity. Works especially for one-of-a-kinds.</p>
+        </div>
+        <div><span class="row-tag tag-launch">Launch</span></div>
+        <div class="row-timing">48 hrs after drop</div>
+      </div>
+
+      <!-- SEASONAL -->
+      <div class="series-row">
+        <div class="row-num">08</div>
+        <div class="row-content">
+          <h4>Holiday Gift Guide: "Gifts That Are Actually Special"</h4>
+          <p>Position clai.ceramics as the antidote to generic gifts. Curated pieces by price range or recipient type. Launch early November.</p>
+        </div>
+        <div><span class="row-tag tag-seasonal">Seasonal</span></div>
+        <div class="row-timing">Early November</div>
+      </div>
+      <div class="series-row">
+        <div class="row-num">09</div>
+        <div class="row-content">
+          <h4>New Year: "What I Want to Make This Year"</h4>
+          <p>Connie shares her artistic intentions for the year ahead — new techniques, forms she wants to explore, markets she hopes to attend.</p>
+        </div>
+        <div><span class="row-tag tag-seasonal">Seasonal</span></div>
+        <div class="row-timing">Early January</div>
+      </div>
+
+      <!-- RETENTION -->
+      <div class="series-row">
+        <div class="row-num">10</div>
+        <div class="row-content">
+          <h4>Post-Purchase: "Your Piece Has a Story"</h4>
+          <p>Automated email after a purchase sharing the specific story of the piece they bought (or the collection it belongs to). Deepens emotional connection.</p>
+        </div>
+        <div><span class="row-tag tag-retention">Retention</span></div>
+        <div class="row-timing">2 days post-purchase</div>
+      </div>
+      <div class="series-row">
+        <div class="row-num">11</div>
+        <div class="row-content">
+          <h4>Re-engagement: "I've Been in the Studio…"</h4>
+          <p>For subscribers who haven't opened in 90+ days. Connie's voice, honest update, soft CTA. Includes an unsubscribe nudge to keep list healthy.</p>
+        </div>
+        <div><span class="row-tag tag-retention">Retention</span></div>
+        <div class="row-timing">90-day inactivity</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR -->
+  <section>
+    <div class="section-label">04 — Content Calendar</div>
+    <div class="section-title">Q1–Q4 Sending Rhythm (Sample)</div>
+    <div class="cal-grid">
+      <div class="cal-month">
+        <h4>January</h4>
+        <div class="cal-item"><div class="cal-dot dot-seasonal"></div>"What I Want to Make" New Year email</div>
+        <div class="cal-item"><div class="cal-dot dot-nurture"></div>Studio Dispatch — January</div>
+        <div class="cal-item"><div class="cal-dot dot-nurture"></div>Nature Deep Dive: Winter forms</div>
+      </div>
+      <div class="cal-month">
+        <h4>February</h4>
+        <div class="cal-item"><div class="cal-dot dot-seasonal"></div>Valentine's: "Not Another Candle" gift guide</div>
+        <div class="cal-item"><div class="cal-dot dot-launch"></div>Early Access Drop</div>
+        <div class="cal-item"><div class="cal-dot dot-nurture"></div>Studio Dispatch</div>
+      </div>
+      <div class="cal-month">
+        <h4>March</h4>
+        <div class="cal-item"><div class="cal-dot dot-nurture"></div>Studio Dispatch — Spring teaser</div>
+        <div class="cal-item"><div class="cal-dot dot-nurture"></div>Nature Deep Dive: Botanical forms</div>
+        <div class="cal-item"><div class="cal-dot dot-seasonal"></div>Spring market / event announcement</div>
+      </div>
+      <div class="cal-month">
+        <h4>April</h4>
+        <div class="cal-item"><div class="cal-dot dot-launch"></div>Spring Collection Drop — Early Access</div>
+        <div class="cal-item"><div class="cal-dot dot-launch"></div>Last Chance follow-up</div>
+        <div class="cal-item"><div class="cal-dot dot-nurture"></div>Studio Dispatch</div>
+      </div>
+      <div class="cal-month">
+        <h4>May</h4>
+        <div class="cal-item"><div class="cal-dot dot-seasonal"></div>Mother's Day: "For the Mom Who Has Everything"</div>
+        <div class="cal-item"><div class="cal-dot dot-nurture"></div>Studio Dispatch</div>
+        <div class="cal-item"><div class="cal-dot dot-nurture"></div>Nature Deep Dive: Ocean/sea forms</div>
+      </div>
+      <div class="cal-month">
+        <h4>June</h4>
+        <div class="cal-item"><div class="cal-dot dot-seasonal"></div>Summer Solstice collection teaser</div>
+        <div class="cal-item"><div class="cal-dot dot-nurture"></div>Studio Dispatch + summer schedule</div>
+        <div class="cal-item"><div class="cal-dot dot-retention"></div>Re-engagement sweep</div>
+      </div>
+      <div class="cal-month">
+        <h4>September</h4>
+        <div class="cal-item"><div class="cal-dot dot-nurture"></div>Studio Dispatch — Fall preview</div>
+        <div class="cal-item"><div class="cal-dot dot-launch"></div>Fall Drop — Early Access</div>
+        <div class="cal-item"><div class="cal-dot dot-nurture"></div>Nature Deep Dive: Fungi/mushroom forms</div>
+      </div>
+      <div class="cal-month">
+        <h4>November</h4>
+        <div class="cal-item"><div class="cal-dot dot-seasonal"></div>Holiday Gift Guide (early Nov)</div>
+        <div class="cal-item"><div class="cal-dot dot-launch"></div>Holiday Drop — Subscriber Early Access</div>
+        <div class="cal-item"><div class="cal-dot dot-launch"></div>Last Chance / Sold Out notice</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBJECT LINES -->
+  <section>
+    <div class="section-label">05 — Copywriting</div>
+    <div class="section-title">Subject Line Examples</div>
+    <div class="subjects">
+      <div class="subject-line">
+        <div class="subject-type">Welcome</div>
+        <div class="subject-text">Hello — I made this for you 🏺</div>
+        <div class="subject-preview">Preview: You joined at just the right time...</div>
+      </div>
+      <div class="subject-line">
+        <div class="subject-type">Launch</div>
+        <div class="subject-text">Early access: the spring collection is here (subscribers first)</div>
+        <div class="subject-preview">Preview: 24 hours before the world sees it...</div>
+      </div>
+      <div class="subject-line">
+        <div class="subject-type">Nurture</div>
+        <div class="subject-text">I spent 3 hours staring at a sea urchin this week</div>
+        <div class="subject-preview">Preview: Here's what came out of it...</div>
+      </div>
+      <div class="subject-line">
+        <div class="subject-type">Seasonal</div>
+        <div class="subject-text">A gift that won't be re-gifted. (Promise.)</div>
+        <div class="subject-preview">Preview: Our holiday guide for the impossible-to-shop-for...</div>
+      </div>
+      <div class="subject-line">
+        <div class="subject-type">Urgency</div>
+        <div class="subject-text">3 left. Then gone forever.</div>
+        <div class="subject-preview">Preview: These don't get remade...</div>
+      </div>
+      <div class="subject-line">
+        <div class="subject-type">Story</div>
+        <div class="subject-text">Growing up in Lagos taught me to see differently</div>
+        <div class="subject-preview">Preview: And it's in every piece I make...</div>
+      </div>
+      <div class="subject-line">
+        <div class="subject-type">Re-engage</div>
+        <div class="subject-text">Been a while 👋 Here's what I've been making</div>
+        <div class="subject-preview">Preview: No pressure — just wanted to share...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPIs -->
+  <section>
+    <div class="section-label">06 — Success Metrics</div>
+    <div class="section-title">Target KPIs</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <span class="kpi-value">40%+</span>
+        <div class="kpi-label">Open Rate<br>(Industry avg: 20–25%)</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-value">3%+</span>
+        <div class="kpi-label">Click-Through Rate<br>(Industry avg: 1–2%)</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-value">&lt;0.5%</span>
+        <div class="kpi-label">Unsubscribe Rate<br>(Per email)</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-value">20%+</span>
+        <div class="kpi-label">Revenue from Email<br>(% of total sales)</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-value">30%+</span>
+        <div class="kpi-label">List Growth<br>(Year-over-year)</div>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-value">2×</span>
+        <div class="kpi-label">Repeat Purchase Rate<br>(Subscribers vs non)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPS -->
+  <div class="tips-box">
+    <h3>✦ Implementation Tips for Flodesk</h3>
+    <div class="tips-list">
+      <div class="tip"><span class="tip-bullet">→</span><span>Set up the 3-email welcome sequence as a Flodesk Workflow triggered on list sign-up. Days 0, 3, and 7.</span></div>
+      <div class="tip"><span class="tip-bullet">→</span><span>Use Flodesk's visual editor to let photos of the work carry the email — keep text minimal and personal.</span></div>
+      <div class="tip"><span class="tip-bullet">→</span><span>Segment subscribers by purchase history to send post-purchase emails only to buyers, not the whole list.</span></div>
+      <div class="tip"><span class="tip-bullet">→</span><span>Link the Instagram/YouTube process videos in nurture emails — Flodesk embeds look beautiful on mobile.</span></div>
+      <div class="tip"><span class="tip-bullet">→</span><span>Use a consistent "From Name" — "Connie from clai.ceramics" — for human recognition and better open rates.</span></div>
+      <div class="tip"><span class="tip-bullet">→</span><span>Always send a test to yourself first and view on mobile — most of your audience will read there.</span></div>
+      <div class="tip"><span class="tip-bullet">→</span><span>Grow the list via the "Where to Find Me" Flodesk form — add to Instagram bio and market sign-up sheets.</span></div>
+      <div class="tip"><span class="tip-bullet">→</span><span>Run a quarterly audit: archive cold subscribers (90+ days no open) to keep deliverability high.</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Prepared for clai.ceramics · claiceramics.com · May 2026
+</div>
+
+</body>
+</html>
